@@ -39,16 +39,16 @@ Using the <b>@Transfergrid</b> annotation makes the ReflectorGrid see the variab
 
 [Transfergrid.java](https://github.com/FancyJavaStuff/TransferGrid/blob/master/src/ch/rs/reflectorgrid/Transfergrid.java) contains several functions to give you more customization:
 
-<b>public boolean editable () default true</b>
+<b>public boolean editable () default true</b> <br />
 Lets you make a annoted variable uneditable, so that the user can only see what is in it.
 
-<b>public String[] options () default {}</b>
+<b>public String[] options () default {}</b> <br />
 This function enables you to set options for the variable. This turns the variable into a ComboBox, from which the user can pick an option you set here. Please bear in mind that putting something into options() will result it always turning into a ComboBox, no matter what you set in <b>fieldtype()</b>
 
-<b>public Fieldtype fieldtype () default Fieldtype.TEXTFIELD</b>
+<b>public Fieldtype fieldtype () default Fieldtype.TEXTFIELD</b> <br />
 This function can be set to one of the following enums:
 
-<i>TEXTFIELD, TEXTAREA</i>
+<i>TEXTFIELD <br />TEXTAREA</i>
 
 Its default value is <i>TEXTFIELD</i>. If you have a variable that resembles something like notes, or a text, you can set it to <i>TEXTAREA</i> to generate a better fitting field.
 
@@ -62,26 +62,26 @@ ReflectorGrid gridGenerator = new ReflectorGrid();
 
 You can then set different parameters for the gridGenerator itself. The avaliable functions for that are:
 
-<b>public void setSideBySide()</b>
+<b>public void setSideBySide()</b> <br />
 This generates the Grid using the following format:
 
-Label | Field
-Label | Field 
-Label | Field
+Label | Field <br />
+Label | Field <br />
+Label | Field <br />
 
 
-<b>public void setAboveEach()</b>
+<b>public void setAboveEach()</b> <br />
 This generates the Grid using the following format:
 
-Label
-Field
-Label
-Field
-Label
-Field
+Label <br />
+Field <br />
+Label <br />
+Field <br />
+Label <br />
+Field <br />
 
 
-<b>public void setNodeWidthLimit(double limit)</b>
+<b>public void setNodeWidthLimit(double limit)</b> <br />
 This allows you to set a limit to how Width the TextFields/Areas can get.
 
 
