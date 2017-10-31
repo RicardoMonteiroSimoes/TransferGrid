@@ -8,7 +8,7 @@ This library uses reflection to create a JavaFX GridPane with all annoted variab
 - [Current Status](#Current-Status)
 - [HowTo](#HowTo)
   - [Transfergrid](#Transfergrid)
-  - [ReflectorGrid][(#ReflectorGrid)
+  - [ReflectorGrid](#ReflectorGrid)
   - [Usage](#Usage)
 
 ## Why
@@ -30,6 +30,8 @@ Currently Version 1.0 is released and free to use. If you find any issues, pleas
 It works with int, boolean, String, float and double types, and can also reflect upon variables of inhereted classes.
 
 ## HowTo
+
+### ReflectorGrid
 
 To use the ReflectorGrid, you have to use the <b>@Transfergrid</b> annotation.
 
