@@ -13,7 +13,7 @@ This library uses reflection to create a JavaFX GridPane with all annoted variab
 
 ## Why
 
-After quite some work on my [Graphical Programming Interface](https://github.com/FancyJavaStuff/GPI) and using quite a bit of [GSON](https://github.com/google/gson), I decided to create a way of generating a GridPane for objects. This lead me to this library, which was primarly developed on the GPI repo and has now been separated into a separate one.
+After quite some work on my [Graphical Programming Interface](https://github.com/FancyJavaStuff/GPI) and using quite a bit of [GSON](https://github.com/google/gson), I decided to create a way of generating a GridPane for objects. This lead me to this library, which was primarly developed on the GPI repo and has now been separated into a separate one, for everyone to use.
 
 This was heavily inspired by [GSON](https://github.com/google/gson) and it was used as reference for quite some stuff, so thank you [@Google](https://github.com/google)!
 
@@ -26,8 +26,8 @@ Even thought this project is finished for now, I have some future goals
 
 ## Current Status
 
-Currently Version 1.0 is released and free to use. If you find any issues, please report them. Feel free to also give any recommendantions!
-It works with int, boolean, String, float and double types, and can also reflect upon variables of inhereted classes.
+Currently Version 1.0 is released and free to use. If you find any issues, please report them. Feel free to also give any recommendations!
+<b>It works with int, boolean, String, float and double types, and can also reflect upon variables of inhereted classes.</b>
 
 ## HowTo
 
@@ -40,17 +40,17 @@ Using the <b>@Transfergrid</b> annotation makes the ReflectorGrid see the variab
 [Transfergrid.java](https://github.com/FancyJavaStuff/TransferGrid/blob/master/src/ch/rs/reflectorgrid/Transfergrid.java) contains several functions to give you more customization:
 
 <b>public boolean editable () default true</b> <br />
-Lets you make a annoted variable uneditable, so that the user can only see what is in it.
+Lets you make an annoted variable uneditable, so that the user can only see what is in it.
 
 <b>public String[] options () default {}</b> <br />
-This function enables you to set options for the variable. This turns the variable into a ComboBox, from which the user can pick an option you set here. Please bear in mind that putting something into options() will result it always turning into a ComboBox, no matter what you set in <b>fieldtype()</b>
+This function enables you to set options for the variable. This turns the variable into a ComboBox, from which the user can pick an option you set here. Please bear in mind that putting something into options() will result in it always turning into a ComboBox, no matter what you set in <b>fieldtype()</b>
 
 <b>public Fieldtype fieldtype () default Fieldtype.TEXTFIELD</b> <br />
 This function can be set to one of the following enums:
 
 <i>TEXTFIELD <br />TEXTAREA</i>
 
-Its default value is <i>TEXTFIELD</i>. If you have a variable that resembles something like notes, or a text, you can set it to <i>TEXTAREA</i> to generate a better fitting field.
+Its default value is <i>TEXTFIELD</i>. If you have a variable that resembles something like notes, or a text, you can set it to <i>TEXTAREA</i> to generate a better fitting field. Please referr to the Examples further down to see it in action.
 
 
 ### Transfergrid
@@ -93,7 +93,7 @@ As soon as you place the GridPane in your GUI, calling <b>public GridPane turnOb
 
 ## Usage
 
-Here is an example of a Classn where this is used:
+Here is an example of a Class where this is used:
 
 ```
 public class TCPIn extends LogicBlock {
