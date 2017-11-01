@@ -25,6 +25,8 @@ SOFTWARE
 package ch.rs.reflectorgrid;
 
 import ch.rs.reflectorgrid.Transfergrid.Fieldtype;
+import static ch.rs.reflectorgrid.util.DefaultFieldNamingStrategy.*;
+import ch.rs.reflectorgrid.util.FieldNamingStrategy;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -94,6 +96,18 @@ public class ReflectorGrid {
     //This variable is used to define the width limit of the Field. Default is
     //Set to 300.
     private double NODE_WIDTH_LIMIT = 300;
+    
+    /**
+     * This variable is used to set the way a Label is named.
+     * If it is set to <b>VERBATIM</b>, the label will keep the same name as the variable.
+     * If it is set to <b>SPLIT_TO_CAPITALIZED_WORDS</b>, it will work as in the following
+     * example:
+     * 
+     * portToSendTo  -> Port To Send To
+     */
+    private FieldNamingStrategy namingConvention = SPLIT_TO_CAPITALIZED_WORDS;
+    
+    
 
     public GridPane turnObjectIntoGrid(Object object) {
         gridObject = object;
@@ -124,7 +138,7 @@ public class ReflectorGrid {
 
             //This makes sure that we dont start doing stuff for variables that are not supposed to be read.
             if (annotation != null) {
-                labels.add(new Label(field.getName()));
+                labels.add(new Label(namingConvention.toString(field)));
 
                 try {
                     field.setAccessible(true);
@@ -387,6 +401,14 @@ public class ReflectorGrid {
      */
     public void setNodeWidthLimit(double limit) {
         NODE_WIDTH_LIMIT = limit;
+    }
+    
+    public void setNamingVerbatim(){
+        namingConvention = VERBATIM;
+    }
+    
+    public void setNamingToCapitalizedSplit(){
+        namingConvention = SPLIT_TO_CAPITALIZED_WORDS;
     }
 
 }
