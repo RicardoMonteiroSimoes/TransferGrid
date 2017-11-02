@@ -6,7 +6,7 @@ import java.util.function.Function;
 /**
  * Contains some basic {@link FieldNamingStrategy}s.
  * 
- * @author I-Al-Istannen, :-> https://github.com/I-Al-Istannen
+ * @author I-Al-Istannen, : https://github.com/I-Al-Istannen
  */
 public enum DefaultFieldNamingStrategy implements FieldNamingStrategy {
   VERBATIM(Field::getName),

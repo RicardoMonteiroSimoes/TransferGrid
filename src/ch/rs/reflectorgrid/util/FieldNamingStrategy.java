@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 /**
  * Defines how a {@link Field} name is mapped to a label in the GUI.
  * 
- * @author I-Al-Istannen, :-> https://github.com/I-Al-Istannen
+ * @author I-Al-Istannen, : https://github.com/I-Al-Istannen
  */
 public interface FieldNamingStrategy {
 

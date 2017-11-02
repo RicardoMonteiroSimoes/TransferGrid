@@ -26,7 +26,7 @@ public class Main extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Logic Editor");
-        Scene scene = new Scene(grid.turnObjectIntoGrid(new ExampleClass()));
+        Scene scene = new Scene(grid.transfromIntoGrid(new ExampleClass()));
         primaryStage.setScene(scene);
         primaryStage.show();
     }

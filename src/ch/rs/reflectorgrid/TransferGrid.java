@@ -52,7 +52,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Transfergrid {
+public @interface TransferGrid {
 
     
     /**
@@ -60,7 +60,7 @@ public @interface Transfergrid {
      * TextInputField.
      */
     public enum Fieldtype{
-        TEXTFIELD, TEXTAREA
+        TEXT_FIELD, TEXT_AREA
     }
 
     /**
@@ -97,6 +97,6 @@ public @interface Transfergrid {
      * 
      * @return 
      */
-    public Fieldtype fieldtype () default Fieldtype.TEXTFIELD;
+    public Fieldtype fieldtype () default Fieldtype.TEXT_FIELD;
 
 }

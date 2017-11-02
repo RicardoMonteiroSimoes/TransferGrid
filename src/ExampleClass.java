@@ -1,5 +1,5 @@
 
-import ch.rs.reflectorgrid.Transfergrid;
+import ch.rs.reflectorgrid.TransferGrid;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,12 +13,16 @@ import ch.rs.reflectorgrid.Transfergrid;
  */
 public class ExampleClass {
     
-    @Transfergrid
-    private int port;
+    @TransferGrid
+    private int port = 8080;
     
-    @Transfergrid(editable = false)
+    @TransferGrid(editable = false)
     private String serverIp = "127.0.0.1";
     
-    @Transfergrid
+    @TransferGrid
     private String messageToSend;
+    
+    @TransferGrid
+    private double longVariable = 5063453;
+    
 }
