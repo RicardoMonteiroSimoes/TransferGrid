@@ -19,7 +19,6 @@ public class Main extends Application{
     static ReflectorGrid grid = new ReflectorGrid();
     
     public static void main(String[] args){
-        
         launch(args);
     }
 

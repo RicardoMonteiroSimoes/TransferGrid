@@ -23,6 +23,12 @@ public class ExampleClass {
     private String messageToSend;
     
     @TransferGrid
-    private double longVariable = 5063453;
+    private double longVariable = 50.123;
+    
+    @TransferGrid
+    private long longType = 946544654;
+    
+    @TransferGrid
+    private float floatValue = 3478523.23452345f;
     
 }

@@ -50,6 +50,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 import java.lang.Number;
+import java.math.BigDecimal;
 import javafx.scene.control.SpinnerValueFactory;
 
 /**
@@ -222,8 +223,17 @@ public class ReflectorGrid {
         Consumer<String> changeListener = string -> {
             Object value = typeConverterCollection.fromString(field.getType(), string);
             ReflectionHelper.setFieldValue(field, handle, value);
+            System.out.println((ReflectionHelper.getFieldValue(field, gridObject)).toString());
         };
+        return changeListener;
+    }
 
+    private Consumer<BigDecimal> getBigDecimalListener(Field field, Object handle) {
+        Consumer<BigDecimal> changeListener = BigDecimal -> {
+            Object value = typeConverterCollection.fromObject(field.getType(), BigDecimal);
+            ReflectionHelper.setFieldValue(field, handle, value);
+            System.out.println(ReflectionHelper.getFieldValue(field, gridObject).toString());
+        };
         return changeListener;
     }
 
@@ -231,6 +241,7 @@ public class ReflectorGrid {
         Consumer<Object> changeListener = object -> {
             Object value = typeConverterCollection.fromObject(field.getType(), object);
             ReflectionHelper.setFieldValue(field, handle, value);
+            System.out.println((ReflectionHelper.getFieldValue(field, gridObject).toString()));
         };
 
         return changeListener;
@@ -278,22 +289,17 @@ public class ReflectorGrid {
 
     private Spinner createSpinner(Field field, Object handle) {
 
-        if (field.getType() == int.class) {
-            Spinner<Integer> spinner = new Spinner<Integer>();
-            SpinnerValueFactory<Integer> valueFactory
-                    = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, Integer.MAX_VALUE,
-                            ReflectionHelper.getFieldValue(field, handle));
-
-            spinner.setValueFactory(valueFactory);
-            return spinner;
-        }
-        Spinner<Double> spinner = new Spinner<Double>();
-        SpinnerValueFactory<Double> valueFactory
-                = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, Double.MAX_VALUE,
-                        ReflectionHelper.getFieldValue(field, handle));
+        Spinner<BigDecimal> spinner = new Spinner<BigDecimal>();
+        SpinnerValueFactory<BigDecimal> valueFactory
+                = new NumberSpinnerValueFactory(Integer.MIN_VALUE, Integer.MAX_VALUE,
+                        BigDecimal.valueOf(
+                                ReflectionHelper.<Number>getFieldValue(field, handle).doubleValue()), field.getType());
 
         spinner.setValueFactory(valueFactory);
+        spinner.valueProperty().addListener((obs, ov, newValue)
+                -> getObjectListener(field, handle).accept(newValue));
         return spinner;
+
     }
 
     private String objectToString(Object object) {
@@ -302,10 +308,12 @@ public class ReflectorGrid {
 
     private void clearGrid() {
         grid.getChildren().clear();
+
     }
 
     private boolean shouldTransferToGrid(Field field) {
-        return field.isAnnotationPresent(TransferGrid.class);
+        return field.isAnnotationPresent(TransferGrid.class
+        );
     }
 
     private void setMaxWidth(TextInputControl field) {
@@ -323,7 +331,6 @@ public class ReflectorGrid {
         }
 
     }
-
 
     /**
      * Sets the format for the grid.
