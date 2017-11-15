@@ -310,7 +310,7 @@ public class ReflectorGrid {
      * {@link LabelDisplayOrder} for information about the different avaliable
      * formats.
      *
-     * @param labelDisplayOrder
+     * @param labelDisplayOrder the new labelDisplayOrder
      */
     public void setLabelDisplayOrder(LabelDisplayOrder labelDisplayOrder) {
         displayOrder = labelDisplayOrder;

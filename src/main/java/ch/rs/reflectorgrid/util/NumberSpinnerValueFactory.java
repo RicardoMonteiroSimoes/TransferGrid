@@ -54,22 +54,14 @@ public class NumberSpinnerValueFactory extends SpinnerValueFactory<BigDecimal> {
      *
      * @param min The minimum allowed double value for the Spinner.
      * @param max The maximum allowed double value for the Spinner.
+     * @param type the Type of a variable
      */
     public NumberSpinnerValueFactory(@NamedArg("min") Number min,
             @NamedArg("max") Number max, Type type) {
         this(min, max, min, type);
     }
 
-    /**
-     * Constructs a new BigDecimalSpinnerValueFactory with a default
-     * {@code amountToStepBy} of one.
-     *
-     * @param min The minimum allowed double value for the Spinner.
-     * @param max The maximum allowed double value for the Spinner.
-     * @param initialValue The value of the Spinner when first instantiated,
-     * must be within the bounds of the min and max arguments, or else the min
-     * value will be used.
-     */
+
     public NumberSpinnerValueFactory(@NamedArg("min") Number min,
             @NamedArg("max") Number max,
             @NamedArg("initialValue") Number initialValue,
@@ -77,16 +69,7 @@ public class NumberSpinnerValueFactory extends SpinnerValueFactory<BigDecimal> {
         this(min, max, initialValue, 1, type);
     }
 
-    /**
-     * Constructs a new BigDecimalSpinnerValueFactory.
-     *
-     * @param min The minimum allowed double value for the Spinner.
-     * @param max The maximum allowed double value for the Spinner.
-     * @param initialValue The value of the Spinner when first instantiated,
-     * must be within the bounds of the min and max arguments, or else the min
-     * value will be used.
-     * @param amountToStepBy The amount to increment or decrement by, per step.
-     */
+
     public NumberSpinnerValueFactory(@NamedArg("min") Number min,
             @NamedArg("max") Number max,
             @NamedArg("initialValue") Number initialValue,

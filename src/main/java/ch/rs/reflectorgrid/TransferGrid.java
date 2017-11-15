@@ -64,7 +64,7 @@ public @interface TransferGrid {
      * default is set to true.
      * true == write/read
      * false == read only
-     * @return 
+     * @return if it is editable or not
      */
     public boolean editable () default true;
 
@@ -75,7 +75,7 @@ public @interface TransferGrid {
      * 
      * To set this variable, please make use of a normal String array.
      * <b>Example:</b>
-     * @Transfergrid(options = {"full", "half", "none"}); 
+     * TransferGrid(options = {"full", "half", "none"});
      * 
      * @return Stringarray of all options.
      */
@@ -91,7 +91,7 @@ public @interface TransferGrid {
      * <b>WARNING</b> If options() has been filled, whatever you set here
      * gets ignored.
      * 
-     * @return 
+     * @return  the fieldType of a field
      */
     public Fieldtype fieldtype () default Fieldtype.TEXT_FIELD;
 

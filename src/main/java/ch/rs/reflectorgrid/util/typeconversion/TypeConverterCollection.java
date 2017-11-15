@@ -31,7 +31,7 @@ import java.util.Map;
 
 /**
  * Contains all Type converters that will be used.
- * Handles the conversion from String <=> Objects
+ * Handles the conversion from String to Objects
  * @author I-Al-Istannen, : https://github.com/I-Al-Istannen
  */
 public class TypeConverterCollection {

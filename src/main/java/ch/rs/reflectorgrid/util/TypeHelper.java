@@ -45,7 +45,7 @@ public class TypeHelper {
     /**
      * @author Pshemo @ StackOverflow
      * https://stackoverflow.com/a/37656409/5471598
-     * @param cls
+     * @param cls the class to check
      * @return true if the given class is of numeric nature
      */
     public static boolean isNumericType(Class<?> cls) {
