@@ -29,7 +29,6 @@ build.xml
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-### NetBeans ###
 nbproject/private/
 build/
 nbbuild/
@@ -40,7 +39,6 @@ nbproject/build-impl.xml
 nbproject/project.xml
 nbproject/project.properties
 nbproject/genfiles.properties
-### intelliJ ###
 .idea/artifacts/TransferGrid_jar.xml
 .idea/artifacts/TransferGrid_jar.xml
 .idea/compiler.xml
@@ -59,6 +57,4 @@ META-INF/MANIFEST.MF
 META-INF
 TransferGrid.iml
 
-
-### other ###
 pom.xml
