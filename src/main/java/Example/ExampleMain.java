@@ -18,6 +18,7 @@ public class ExampleMain extends Application {
         ExampleObject exampleObject = new ExampleObject();
         ReflectorGrid reflectorGrid = new ReflectorGrid();
         reflectorGrid.setFieldNamingStrategy(DefaultFieldNamingStrategy.SPLIT_TO_CAPITALIZED_WORDS);
+        
         GridPane gridPane = reflectorGrid.transfromIntoGrid(exampleObject);
 
         primaryStage.setScene(new Scene(gridPane));
