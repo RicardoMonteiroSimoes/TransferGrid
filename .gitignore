@@ -40,6 +40,7 @@ nbproject/build-impl.xml
 nbproject/project.xml
 nbproject/project.properties
 nbproject/genfiles.properties
+### intelliJ ###
 .idea/artifacts/TransferGrid_jar.xml
 .idea/artifacts/TransferGrid_jar.xml
 .idea/compiler.xml
@@ -53,4 +54,11 @@ nbproject/genfiles.properties
 .idea/workspace.xml
 .idea/vcs.xml
 .idea/artifacts/TransferGrid_jar.xml
+.idea
 META-INF/MANIFEST.MF
+META-INF
+TransferGrid.iml
+
+
+### other ###
+pom.xml
