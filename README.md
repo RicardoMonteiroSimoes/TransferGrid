@@ -7,8 +7,6 @@ This library uses reflection to create a JavaFX GridPane with all annoted variab
 - [Goals](#Goals)
 - [Current Status](#Current-Status)
 - [HowTo](#HowTo)
-  - [Transfergrid](#Transfergrid)
-  - [ReflectorGrid](#ReflectorGrid)
   - [Usage](#Usage)
 
 ## Why
@@ -17,141 +15,46 @@ After quite some work on my [Graphical Programming Interface](https://github.com
 
 This was heavily inspired by [GSON](https://github.com/google/gson) and it was used as reference for quite some stuff, so thank you [@Google](https://github.com/google)!
 
+Many thanks also go out to [I-Al-Istannen](https://github.com/I-Al-Istannen) who did some initial splitting up of v1.0.0 into something more structured.
+
+The whole library was improved and gives the user now more customizability, whilst also increasing its functional scope. Objects in Objects? No problem, we can include them! Enums? No problem, TransferGrid generates a comboBox which gives the user all enum options!
+
+Check out the [wiki](link) or the [Examples](link) to find out more.
 ## Goals
 
-Even thought this project is finished for now, I have some future goals
-
-* Implementation of custom Adapters
-  - Enable users to create their own Adapters for variable types that are not primitive
+Currently there are no set goals. Ofcourse, bug fixes are part of it, but I will continue work on the [GPI](https://github.com/FancyJavaStuff/GPI) before thinking about extending TransferGrid. If you have any suggestion/idea, feel free to share it!
 
 ## Current Status
 
-Currently Version 1.0 is released and free to use. If you find any issues, please report them. Feel free to also give any recommendations!
-<b>It works with int, boolean, String, float and double types, and can also reflect upon variables of inhereted classes.</b>
+~~Currently Version 1.0 is released and free to use. If you find any issues, please report them. Feel free to also give any recommendations!~~ 
+
+**Version 1.5.1 has been released!**
+v1.5.0 was about to get released but on my commute... I realized I had forgotten to change something. Oh well, it is done now, and I can finally publish it.
+
+This version features many enhancements. To view them all, please check out the [v1.5.1 release!](insertLinkHere)
+
+This feature also added a GitHub Page to this repository that is contains the whole javaDoc of this library. The github Page can be found [here](https://fancyjavastuff.github.io/TransferGrid/javaDoc/index.html)
 
 ## HowTo
 
-### ReflectorGrid
-
-To use the ReflectorGrid, you have to use the <b>@Transfergrid</b> annotation.
-
-Using the <b>@Transfergrid</b> annotation makes the ReflectorGrid see the variable. All variables that do not have the annotation will be ignored.
-
-[Transfergrid.java](https://github.com/FancyJavaStuff/TransferGrid/blob/master/src/ch/rs/reflectorgrid/Transfergrid.java) contains several functions to give you more customization:
-
-<b>public boolean editable () default true</b> <br />
-Lets you make an annoted variable uneditable, so that the user can only see what is in it.
-
-<b>public String[] options () default {}</b> <br />
-This function enables you to set options for the variable. This turns the variable into a ComboBox, from which the user can pick an option you set here. Please bear in mind that putting something into options() will result in it always turning into a ComboBox, no matter what you set in <b>fieldtype()</b>
-
-<b>public Fieldtype fieldtype () default Fieldtype.TEXTFIELD</b> <br />
-This function can be set to one of the following enums:
-
-<i>TEXTFIELD <br />TEXTAREA</i>
-
-Its default value is <i>TEXTFIELD</i>. If you have a variable that resembles something like notes, or a text, you can set it to <i>TEXTAREA</i> to generate a better fitting field. Please referr to the Examples further down to see it in action.
-
-
-### Transfergrid
-
-To use this library, you first have to initiate a ReflectorGrid.
-```
-ReflectorGrid gridGenerator = new ReflectorGrid();
-```
-
-You can then set different parameters for the gridGenerator itself. The avaliable functions for that are:
-
-<b>public void setSideBySide()</b> <br />
-This generates the Grid using the following format:
-
-Label | Field <br />
-Label | Field <br />
-Label | Field <br />
-
-
-<b>public void setAboveEach()</b> <br />
-This generates the Grid using the following format:
-
-Label <br />
-Field <br />
-Label <br />
-Field <br />
-Label <br />
-Field <br />
-
-
-<b>public void setNodeWidthLimit(double limit)</b> <br />
-This allows you to set a limit to how Width the TextFields/Areas can get.
-
-
-<b>public GridPane turnObjectIntoGrid(Object object)</b>
-This function is where you give the ReflectorGrid your object. It will then go on and generate everyhing according to the annotations aswell as to the parameters of the generator you set. In the end, it'll return a GridPane containing all your defined variables.
-
-As soon as you place the GridPane in your GUI, calling <b>public GridPane turnObjectIntoGrid(Object object)</b> again with a different Object will automaticly update the GUI with the new values.
-
+A how to can be found in the [wiki](link)
 
 ## Usage
 
-Here is an example of a Class where this is used:
+This repo contains a folder [Example](link)
 
+The main class contains the following setup for the usage of the TransferGrid:
 ```
-public class TCPIn extends LogicBlock {
-
-    @Transfergrid
-    private int port = 8080;
-    
-    private String temporaryValue = "temporary";
-    
-    @Transfergrid
-    private String turnOnMessage = "turnOn";
-
-    @Transfergrid
-    private String turnOffMessage = "turnOff";
-    
-    @Transfergrid(editable = false)
-    private boolean isRunning = false;
-    
-    @Transfergrid
-    private float floatport = 0.0f;
-    
-    @Transfergrid
-    private double floatdouble = 0.0;
-    
-    @Transfergrid(options = {"full", "half", "none"})
-    private String runtimeMode = "full";
-
+  ExampleObject exampleObject = new ExampleObject();
+  ReflectorGrid reflectorGrid = new ReflectorGrid();
+  reflectorGrid.setFieldNamingStrategy(DefaultFieldNamingStrategy.SPLIT_TO_CAPITALIZED_WORDS);
+  reflectorGrid.setLabelDisplayOrder(LabelDisplayOrder.SIDE_BY_SIDE);
 ```
 
-```
-public abstract class LogicBlock implements Observer{
-
-    @Transfergrid
-    private String blockName;
-
-    @Transfergrid
-    private String blockDescription;
-    
-    @Transfergrid(fieldtype = Fieldtype.TEXTAREA)
-    private String blockNotes;
-    
-    @Transfergrid(editable = false)
-    private String uniqueID;
-
-    @Transfergrid(editable = false)
-    private BlockType blockType;
-```
-
-Using the following function:
-```
-ReflectorGrid gridGenerator = new ReflectorGrid();
-gridGenerator.turnObjectIntoGrid(new TCPIn());
-```
-
-Gives us the following Result:
+This gives us the following Result:
 
 <p align="left">
-  <img src="pictures/GeneratedGridExample.png"/>
+  <img src="pictures/GeneratedGrid_v1_5_0.png"/>
 </p>
 
 As you can see, you get a barebones grid. You can then set it up to your liking with spacing and all. An additional benefit of this library: setting the paddings etc. once is enough, however many times you generate a grid, they will stay the same!
