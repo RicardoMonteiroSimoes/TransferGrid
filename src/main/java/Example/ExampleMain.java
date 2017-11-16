@@ -2,6 +2,7 @@ package Example;
 
 import ch.rs.reflectorgrid.ReflectorGrid;
 import ch.rs.reflectorgrid.util.DefaultFieldNamingStrategy;
+import ch.rs.reflectorgrid.util.LabelDisplayOrder;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -18,6 +19,7 @@ public class ExampleMain extends Application {
         ExampleObject exampleObject = new ExampleObject();
         ReflectorGrid reflectorGrid = new ReflectorGrid();
         reflectorGrid.setFieldNamingStrategy(DefaultFieldNamingStrategy.SPLIT_TO_CAPITALIZED_WORDS);
+        reflectorGrid.setLabelDisplayOrder(LabelDisplayOrder.SIDE_BY_SIDE);
 
         GridPane gridPane = reflectorGrid.transfromIntoGrid(exampleObject);
 

@@ -157,11 +157,16 @@ public class ReflectorGrid {
      * @return
      */
     private InsertionPosition handleSubClassField(InsertionPosition insertionPosition, Field field, Object subObject) {
-        insertionPosition = displayOrder.addNode(insertionPosition, new Label(namingConvention.toString(field) + ":"), new Separator(), grid);
+        insertionPosition = addSeparator(insertionPosition, grid);
+        insertionPosition = displayOrder.addNode(insertionPosition, new Label(namingConvention.toString(field) + ":"), grid);
         ReflectorGrid tempRefGrid = new ReflectorGrid(this);
         Object object = ReflectionHelper.getFieldValue(field, subObject);
-        insertionPosition=  addGridElements(insertionPosition, tempRefGrid.transfromIntoGrid(object));
-        return displayOrder.addNode(insertionPosition, new Separator(), new Separator(), grid);
+        insertionPosition =  addGridElements(insertionPosition, tempRefGrid.transfromIntoGrid(object));
+        return addSeparator(insertionPosition, grid);
+    }
+
+    private InsertionPosition addSeparator(InsertionPosition insertionPosition, GridPane pane){
+        return displayOrder.addSeparator(insertionPosition, grid);
     }
 
     /**

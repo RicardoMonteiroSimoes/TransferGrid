@@ -24,6 +24,7 @@ package ch.rs.reflectorgrid.util;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -62,6 +63,13 @@ public enum LabelDisplayOrder {
             return new InsertionPosition(position.row + 1, position.column);
         }
 
+        @Override
+        public InsertionPosition addSeparator(InsertionPosition position, GridPane pane){
+            pane.add(new Separator(), position.column, position.row);
+            pane.add(new Separator(), position.column + 1, position.row);
+            return new InsertionPosition(position.row + 1, position.column);
+        }
+
     },
     /**
      * The labels are displayed above the field.
@@ -86,6 +94,12 @@ public enum LabelDisplayOrder {
         @Override
         public InsertionPosition addNode(InsertionPosition position, Node node, GridPane pane) {
             pane.add(node, position.column, position.row);
+            return new InsertionPosition(position.row + 1, position.column);
+        }
+
+        @Override
+        public InsertionPosition addSeparator(InsertionPosition position, GridPane pane){
+            pane.add(new Separator(), position.column, position.row);
             return new InsertionPosition(position.row + 1, position.column);
         }
     };
@@ -124,6 +138,14 @@ public enum LabelDisplayOrder {
      *
      */
     public abstract InsertionPosition addNode(InsertionPosition position, Node node, GridPane pane);
+
+    /**
+     * This function is used to input a JavaFX Separator in the next position.
+     * @param position The position at which the separator will be inserted
+     * @param pane the GridPane which is to receive the separator
+     * @return InsertionPosition for the next Element
+     */
+    public abstract InsertionPosition addSeparator(InsertionPosition position, GridPane pane);
 
     public static class InsertionPosition {
 
