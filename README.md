@@ -19,7 +19,7 @@ Many thanks also go out to [I-Al-Istannen](https://github.com/I-Al-Istannen) who
 
 The whole library was improved and gives the user now more customizability, whilst also increasing its functional scope. Objects in Objects? No problem, we can include them! Enums? No problem, TransferGrid generates a comboBox which gives the user all enum options!
 
-Check out the [wiki](link) or the [Examples](link) to find out more.
+Check out the [wiki](https://github.com/FancyJavaStuff/TransferGrid/wiki) or the [Example](https://github.com/FancyJavaStuff/TransferGrid/tree/master/src/main/java/Example) to find out more.
 ## Goals
 
 Currently there are no set goals. Ofcourse, bug fixes are part of it, but I will continue work on the [GPI](https://github.com/FancyJavaStuff/GPI) before thinking about extending TransferGrid. If you have any suggestion/idea, feel free to share it!
@@ -37,11 +37,11 @@ This feature also added a GitHub Page to this repository that is contains the wh
 
 ## HowTo
 
-A how to can be found in the [wiki](link)
+A how to can be found in the [wiki](https://github.com/FancyJavaStuff/TransferGrid/wiki)
 
 ## Usage
 
-This repo contains a folder [Example](link)
+This repo contains a folder [Example](https://github.com/FancyJavaStuff/TransferGrid/tree/master/src/main/java/Example)
 
 The main class contains the following setup for the usage of the TransferGrid:
 ```
