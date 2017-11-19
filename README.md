@@ -53,6 +53,6 @@ The main class contains the following setup for the usage of the TransferGrid:
 
 This gives us the following Result:
 
-[[https://github.com/FancyJavaStuff/TransferGrid/blob/master/pictures/GeneratedGrid_v1_5_2_wiki_1.png]]
+![Result](https://github.com/FancyJavaStuff/TransferGrid/blob/master/pictures/GeneratedGrid_v1_5_2_wiki_1.png)
 
 As you can see, you get a barebones grid. You can then set it up to your liking with spacing and all. An additional benefit of this library: setting the paddings etc. once is enough, however many times you generate a grid, they will stay the same!
