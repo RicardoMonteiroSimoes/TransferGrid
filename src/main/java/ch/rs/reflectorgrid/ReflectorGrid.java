@@ -139,10 +139,16 @@ public class ReflectorGrid {
 
         InsertionPosition insertionPosition = new InsertionPosition(0, 0);
 
-        for (Field field : gridObject.getClass().getDeclaredFields()) {
-            insertionPosition = handleField(insertionPosition, field, gridObject);
-        }
+        Class clazz = gridObject.getClass();
 
+        while(clazz != null) {
+            for (Field field : clazz.getDeclaredFields()) {
+                if(shouldTransferToGrid(field)){
+                    insertionPosition = handleField(insertionPosition, field, gridObject);
+                }
+            }
+            clazz = clazz.getSuperclass();
+        }
         return grid;
     }
 
