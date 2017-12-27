@@ -244,6 +244,12 @@ public class ReflectorGrid {
             }
         }
 
+        if(!annotation.tooltip().isEmpty()) {
+        Tooltip tempTip = new Tooltip(annotation.tooltip());
+        tempTip.setWrapText(true);
+        label.setTooltip(tempTip);
+        }
+
         adjustNodeProperties(annotation, node);
 
         return new Pair<>(label, node);

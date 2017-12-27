@@ -95,4 +95,13 @@ public @interface TransferGrid {
      */
     public Fieldtype fieldtype () default Fieldtype.TEXT_FIELD;
 
+
+    /**
+     * This gives the Label of the variable a tooltip, which the user can show when hovering
+     * over it with the mouse. This function is usable no mater what fields you are using.
+     *
+     * @return Returns an empty String if there is no tooltip defined.
+     */
+    public String tooltip () default "";
+
 }

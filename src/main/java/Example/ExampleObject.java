@@ -19,7 +19,7 @@ public class ExampleObject extends ExampleParentObject {
     @TransferGrid(fieldtype = TransferGrid.Fieldtype.TEXT_AREA)
     private String textArea;
 
-    @TransferGrid
+    @TransferGrid(tooltip = "Defines the runtime of this application")
     private ExampleEnum option = ExampleEnum.FULL;
     
     @TransferGrid
