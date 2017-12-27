@@ -28,12 +28,12 @@ Currently there are no set goals. Ofcourse, bug fixes are part of it, but I will
 
 ~~Currently Version 1.0 is released and free to use. If you find any issues, please report them. Feel free to also give any recommendations!~~ 
 
-**Version 1.5.2 has been released!**
-v1.5.0 was about to get released but on my commute... I realized I had forgotten to change something. Oh well, it is done now, and I can finally publish it. And then I realized that I had "forgotten" several things in 1.5.1. Well, it should be ok now...
+**Version 1.6.0 has been released!**
+This version now supports Tooltips for the Labels. This can be used to further inform the user of the variable!
 
 This feature also added a GitHub Page to this repository that is contains the whole javaDoc of this library. The github Page can be found [here](https://fancyjavastuff.github.io/TransferGrid/javaDoc/index.html)
 
-This repo is also avaliable as a Maven dependency and can be found over at [jitpack.io](https://jitpack.io/#FancyJavaStuff/TransferGrid/v1.5.2).
+This repo is also avaliable as a Maven dependency and can be found over at [jitpack.io](https://jitpack.io/#FancyJavaStuff/TransferGrid/v1.6.0).
 
 ## HowTo
 
