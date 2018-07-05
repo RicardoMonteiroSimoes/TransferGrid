@@ -208,15 +208,14 @@ public class ReflectorGrid extends GridPane{
     }
 
     /**
-     * Creates a Pair of a Label aswell as an InputField for normal decalred Fields.
+     * Creates a Pair of a Label as well as an InputField for normal declared Fields.
      * @param field the field itself
      * @param handle the object it belongs to
-     * @return a Pair<> consisting of a Label with the Fieldname aswell as an InputField
+     * @return a Pair<> consisting of a Label with the Fieldname as well as an InputField
      */
     private Pair<Label, Node> getNodePairForField(Field field, Object handle) {
         Label label = new Label(namingConvention.toString(field));
         Control node;
-        System.out.println("doing " + field.getName());
         TransferGrid annotation = field.getAnnotation(TransferGrid.class);
 
         if (annotation.options().length > 0) {
@@ -359,6 +358,10 @@ public class ReflectorGrid extends GridPane{
 
     private FieldNamingStrategy getNamingConvention() {
         return namingConvention;
+    }
+
+    public void updateApp(){
+        System.out.println("Update App!");
     }
 
 }

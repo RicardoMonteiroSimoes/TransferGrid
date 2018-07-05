@@ -21,9 +21,9 @@ public class ExampleMain extends Application {
         reflectorGrid.setFieldNamingStrategy(DefaultFieldNamingStrategy.SPLIT_TO_CAPITALIZED_WORDS);
         reflectorGrid.setLabelDisplayOrder(LabelDisplayOrder.SIDE_BY_SIDE);
 
-        GridPane gridPane = reflectorGrid.transfromIntoGrid(exampleObject);
+        reflectorGrid.transfromIntoGrid(exampleObject);
 
-        primaryStage.setScene(new Scene(gridPane));
+        primaryStage.setScene(new Scene(reflectorGrid));
         primaryStage.sizeToScene();
         primaryStage.show();
 

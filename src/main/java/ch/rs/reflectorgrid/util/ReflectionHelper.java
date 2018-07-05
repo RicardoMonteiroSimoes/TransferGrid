@@ -24,6 +24,7 @@ package ch.rs.reflectorgrid.util;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Collections;
 import java.util.function.Predicate;
@@ -35,6 +36,13 @@ import java.util.stream.Collectors;
  * @author I-Al-Istannen, : https://github.com/I-Al-Istannen
  */
 public class ReflectionHelper {
+
+    private static List<UpdateInterface> interfaceToUpdate = new LinkedList<>();
+
+
+    public static void addInterfaceToUpdate(UpdateInterface interfaceToAdd){
+        interfaceToUpdate.add(interfaceToAdd);
+    }
 
     /**
      * Returns all fields from the class and all superclasses.
@@ -96,10 +104,19 @@ public class ReflectionHelper {
         try {
             field.setAccessible(true);
             field.set(handle, value);
+            fieldUpdated(field, handle);
         } catch (ReflectiveOperationException e) {
             throw new ReflectionHelperException(e);
         }
     }
+
+    /**
+     * This function is called when the value of a variable changes. Use this to launch
+     * updates or changes in other parts of the application.
+     * @param handle the object that had its value changed
+     * @param field is the field that was changed
+     */
+    public static void fieldUpdated(Field field, Object handle){};
 
     public static class ReflectionHelperException extends RuntimeException {
         ReflectionHelperException(Throwable cause) {
