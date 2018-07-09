@@ -22,9 +22,10 @@
  * SOFTWARE
  */
 
-package ch.rs.reflectorgrid.util;
+package ch.rs.reflectorgrid.util.statics;
 
-import ch.rs.reflectorgrid.TransferGrid;
+import ch.rs.reflectorgrid.util.NumberSpinnerValueFactory;
+import ch.rs.reflectorgrid.util.annotations.TransferGrid;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 

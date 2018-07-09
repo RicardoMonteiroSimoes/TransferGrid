@@ -25,6 +25,10 @@ package ch.rs.reflectorgrid;
 
 import ch.rs.reflectorgrid.util.*;
 import ch.rs.reflectorgrid.util.LabelDisplayOrder.InsertionPosition;
+import ch.rs.reflectorgrid.util.annotations.TransferGrid;
+import ch.rs.reflectorgrid.util.statics.ReflectionHelper;
+import ch.rs.reflectorgrid.util.statics.ReflectionNodeCollection;
+import ch.rs.reflectorgrid.util.statics.TypeHelper;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -358,10 +362,6 @@ public class ReflectorGrid extends GridPane{
 
     private FieldNamingStrategy getNamingConvention() {
         return namingConvention;
-    }
-
-    public void updateApp(){
-        System.out.println("Update App!");
     }
 
 }

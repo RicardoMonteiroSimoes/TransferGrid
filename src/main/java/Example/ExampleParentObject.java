@@ -1,6 +1,6 @@
 package Example;
 
-import ch.rs.reflectorgrid.TransferGrid;
+import ch.rs.reflectorgrid.util.annotations.TransferGrid;
 
 /**
  *
@@ -9,7 +9,7 @@ import ch.rs.reflectorgrid.TransferGrid;
 public class ExampleParentObject {
     
     @TransferGrid(editable = false)
-    private String name;
+    protected String name;
     
     
     public ExampleParentObject(String name){

@@ -1,6 +1,6 @@
 package Example;
 
-import ch.rs.reflectorgrid.TransferGrid;
+import ch.rs.reflectorgrid.util.annotations.TransferGrid;
 
 /**
  *

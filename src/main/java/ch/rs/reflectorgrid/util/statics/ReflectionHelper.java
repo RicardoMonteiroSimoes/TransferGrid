@@ -20,7 +20,9 @@
  * SOFTWARE
  */
 
-package ch.rs.reflectorgrid.util;
+package ch.rs.reflectorgrid.util.statics;
+
+import ch.rs.reflectorgrid.util.interfaces.ListenerInterface;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -37,11 +39,11 @@ import java.util.stream.Collectors;
  */
 public class ReflectionHelper {
 
-    private static List<UpdateInterface> interfaceToUpdate = new LinkedList<>();
+    private static List<ListenerInterface> interfacesToInvoke = new LinkedList<ListenerInterface>();
 
 
-    public static void addInterfaceToUpdate(UpdateInterface interfaceToAdd){
-        interfaceToUpdate.add(interfaceToAdd);
+    public static void addInterfaceToUpdate(ListenerInterface interfaceToAdd){
+        interfacesToInvoke.add(interfaceToAdd);
     }
 
     /**
@@ -94,17 +96,17 @@ public class ReflectionHelper {
      * Sets the value of a field.
      *
      * @param field  The {@link Field} to set the value for.
-     * @param handle The handle object to use (according to
-     *               {@link Field#set(Object, Object)})
+     * @param object The object object to use (according to
+     * {@link Field#set(Object, Object)})
      * @param value  The value to set it to
      * @throws ReflectionHelperException if any
-     *                                   {@link ReflectiveOperationException} occurs.
+     * {@link ReflectiveOperationException} occurs.
      */
-    public static void setFieldValue(Field field, Object handle, Object value) {
+    public static void setFieldValue(Field field, Object object, Object value) {
         try {
             field.setAccessible(true);
-            field.set(handle, value);
-            fieldUpdated(field, handle);
+            field.set(object, value);
+            notifyListeners(field, object);
         } catch (ReflectiveOperationException e) {
             throw new ReflectionHelperException(e);
         }
@@ -113,10 +115,25 @@ public class ReflectionHelper {
     /**
      * This function is called when the value of a variable changes. Use this to launch
      * updates or changes in other parts of the application.
-     * @param handle the object that had its value changed
+     *
+     * First thing it does is notify all the interfaces.
+     * Due to there being a risk of an unhandled exception with the Reflective invokation of the update method,
+     * they are done last so that at least the interfaces can receive an update.
+     *
+     * @param object the object that had its value changed
      * @param field is the field that was changed
      */
-    public static void fieldUpdated(Field field, Object handle){};
+    public static void notifyListeners(Field field, Object object){
+
+        for(ListenerInterface i : interfacesToInvoke){i.onFieldValueChanged(field, object);}
+
+        try {
+            ListenerHandler.invokeListeners(object, field);
+        } catch (ReflectiveOperationException e){
+            System.out.print("Could not notify update listeners " + e.getMessage());
+        }
+
+    }
 
     public static class ReflectionHelperException extends RuntimeException {
         ReflectionHelperException(Throwable cause) {

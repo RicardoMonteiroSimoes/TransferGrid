@@ -23,6 +23,8 @@ public class ExampleMain extends Application {
 
         reflectorGrid.transfromIntoGrid(exampleObject);
 
+
+
         primaryStage.setScene(new Scene(reflectorGrid));
         primaryStage.sizeToScene();
         primaryStage.show();

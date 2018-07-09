@@ -22,7 +22,7 @@
  * SOFTWARE
  */
 
-package ch.rs.reflectorgrid;
+package ch.rs.reflectorgrid.util.annotations;
 
 import java.lang.annotation.*;
 
