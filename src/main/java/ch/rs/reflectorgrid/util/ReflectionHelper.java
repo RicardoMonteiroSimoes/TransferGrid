@@ -96,9 +96,28 @@ public class ReflectionHelper {
         try {
             field.setAccessible(true);
             field.set(handle, value);
+
+            if(implementsInterface(handle, UpdateInterface.class)){
+                ((UpdateInterface)handle).onFieldValueChanged(field, value);
+            }
         } catch (ReflectiveOperationException e) {
             throw new ReflectionHelperException(e);
         }
+    }
+
+    /**
+     * Checks to see if the given object implements the given interface
+     * @param toCheck Object to use to check for interface
+     * @param clazz Interface to check against
+     * @return true if toCheck implements clazz, false if not
+     */
+    public static boolean implementsInterface(Object toCheck, Class clazz){
+        Class<?>[] interfaces = toCheck.getClass().getInterfaces();
+        for(Class<?> c : interfaces){
+            if(c.equals(clazz))
+                return true;
+        }
+        return false;
     }
 
     public static class ReflectionHelperException extends RuntimeException {
