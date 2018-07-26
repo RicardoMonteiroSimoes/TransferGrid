@@ -28,12 +28,12 @@ Currently there are no set goals. Ofcourse, bug fixes are part of it, but I will
 
 ~~Currently Version 1.0 is released and free to use. If you find any issues, please report them. Feel free to also give any recommendations!~~ 
 
-**Version 1.6.0 has been released!**
+**Version 1.7.0 has been released!**
 This version now has 2 Interfaces that can be used for notifications of whenever a reflective action happens.
 
 This feature also added a GitHub Page to this repository that is contains the whole javaDoc of this library. The github Page can be found [here](https://fancyjavastuff.github.io/TransferGrid/javaDoc/index.html)
 
-This repo is also avaliable as a Maven dependency and can be found over at [jitpack.io](https://jitpack.io/#FancyJavaStuff/TransferGrid/v1.6.0).
+This repo is also avaliable as a Maven dependency and can be found over at [jitpack.io](https://jitpack.io/#FancyJavaStuff/TransferGrid/v1.7.0).
 
 ## HowTo
 
