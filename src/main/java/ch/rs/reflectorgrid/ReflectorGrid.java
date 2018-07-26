@@ -26,6 +26,7 @@ package ch.rs.reflectorgrid;
 import ch.rs.reflectorgrid.util.*;
 import ch.rs.reflectorgrid.util.LabelDisplayOrder.InsertionPosition;
 import ch.rs.reflectorgrid.util.annotations.TransferGrid;
+import ch.rs.reflectorgrid.util.interfaces.ChangeListener;
 import ch.rs.reflectorgrid.util.statics.ReflectionHelper;
 import ch.rs.reflectorgrid.util.statics.ReflectionNodeCollection;
 import ch.rs.reflectorgrid.util.statics.TypeHelper;
@@ -362,6 +363,27 @@ public class ReflectorGrid extends GridPane{
 
     private FieldNamingStrategy getNamingConvention() {
         return namingConvention;
+    }
+
+    /**
+     * Use this function to add an object, for example from the GUI, to be called every time a value
+     * is updated trough reflection.
+     *
+     * Your function will be called with the following parameters:
+     * <b>field, object</b>
+     *
+     * <b>field</b>
+     * Field will give you the field that was updated.
+     *
+     * <b>object</b>
+     * This will show you the object that was updated.
+     *
+     *
+     * @param object an object that implemented  {@link ChangeListener}
+     *
+     */
+    public void addChangeListener(ChangeListener object){
+        ReflectionHelper.addInterfaceToUpdate(object);
     }
 
 }

@@ -46,7 +46,6 @@ public class EnumStringConverter<T extends Enum<T>> extends StringConverter<T> {
         this.enumType = enumType;
     }
 
-
     @Override
     public String toString(T object) {
         enumType.getClass().cast(object);

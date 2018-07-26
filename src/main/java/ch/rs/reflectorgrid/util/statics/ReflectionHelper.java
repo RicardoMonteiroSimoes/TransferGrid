@@ -22,7 +22,8 @@
 
 package ch.rs.reflectorgrid.util.statics;
 
-import ch.rs.reflectorgrid.util.interfaces.ListenerInterface;
+import ch.rs.reflectorgrid.util.interfaces.ChangeListener;
+import ch.rs.reflectorgrid.util.interfaces.ObjectChangeListener;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -39,10 +40,10 @@ import java.util.stream.Collectors;
  */
 public class ReflectionHelper {
 
-    private static List<ListenerInterface> interfacesToInvoke = new LinkedList<ListenerInterface>();
+    private static List<ChangeListener> interfacesToInvoke = new LinkedList<ChangeListener>();
 
 
-    public static void addInterfaceToUpdate(ListenerInterface interfaceToAdd){
+    public static void addInterfaceToUpdate(ChangeListener interfaceToAdd){
         interfacesToInvoke.add(interfaceToAdd);
     }
 
@@ -94,6 +95,17 @@ public class ReflectionHelper {
 
     /**
      * Sets the value of a field.
+     * This function calls the objects that implemented the corresponding listeners.
+     * The Listeners get called the following way:
+     *
+     * 1. ObjectChangeListener
+     * 2. ChangeListener
+     *
+     * This means, that after a value has been changed using reflection, the update function of the object gets
+     * called first.
+     *
+     * This is so that one can make sure the object runs its necessary functions before the GUI starts
+     * updating itself.
      *
      * @param field  The {@link Field} to set the value for.
      * @param object The object object to use (according to
@@ -106,11 +118,18 @@ public class ReflectionHelper {
         try {
             field.setAccessible(true);
             field.set(object, value);
+
+            if(object instanceof ObjectChangeListener){
+                ((ObjectChangeListener) object).onFieldValueChanged(field);
+            }
+
             notifyListeners(field, object);
+
         } catch (ReflectiveOperationException e) {
             throw new ReflectionHelperException(e);
         }
     }
+
 
     /**
      * This function is called when the value of a variable changes. Use this to launch
@@ -124,15 +143,7 @@ public class ReflectionHelper {
      * @param field is the field that was changed
      */
     public static void notifyListeners(Field field, Object object){
-
-        for(ListenerInterface i : interfacesToInvoke){i.onFieldValueChanged(field, object);}
-
-        try {
-            ListenerHandler.invokeListeners(object, field);
-        } catch (ReflectiveOperationException e){
-            System.out.print("Could not notify update listeners " + e.getMessage());
-        }
-
+        for(ChangeListener i : interfacesToInvoke){i.onObjectValueChanged(field, object);}
     }
 
     public static class ReflectionHelperException extends RuntimeException {
