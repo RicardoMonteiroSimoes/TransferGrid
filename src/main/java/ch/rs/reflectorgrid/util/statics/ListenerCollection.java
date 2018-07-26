@@ -21,8 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE
  */
-package ch.rs.reflectorgrid.util;
+package ch.rs.reflectorgrid.util.statics;
 
+import ch.rs.reflectorgrid.util.statics.ReflectionHelper;
 import ch.rs.reflectorgrid.util.typeconversion.EnumStringConverter;
 import ch.rs.reflectorgrid.util.typeconversion.TypeConverterCollection;
 

@@ -25,6 +25,11 @@ package ch.rs.reflectorgrid;
 
 import ch.rs.reflectorgrid.util.*;
 import ch.rs.reflectorgrid.util.LabelDisplayOrder.InsertionPosition;
+import ch.rs.reflectorgrid.util.annotations.TransferGrid;
+import ch.rs.reflectorgrid.util.interfaces.ChangeListener;
+import ch.rs.reflectorgrid.util.statics.ReflectionHelper;
+import ch.rs.reflectorgrid.util.statics.ReflectionNodeCollection;
+import ch.rs.reflectorgrid.util.statics.TypeHelper;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -53,14 +58,7 @@ import java.util.Objects;
  * @author Ricardo Daniel Monteiro Simoes
  * <b>Autho of some nifty little tricks:</b> I-Al-Istannen, : https://github.com/I-Al-Istannen
  */
-public class ReflectorGrid {
-
-    /**
-     * The GridPane that will get actualizied whenever you call
-     * turnObjectIntoGrid. This way we update the grid according to the new
-     * object.
-     */
-    private GridPane grid = new GridPane();
+public class ReflectorGrid extends GridPane{
 
     /**
      * This object is the one we give with turnObjectIntoGrid(). It is needed to
@@ -96,24 +94,25 @@ public class ReflectorGrid {
      * Sets some normal formatting for the grid.
      */
     public ReflectorGrid() {
-        grid.setHgap(5);
-        grid.setVgap(5);
-        grid.setPadding(new Insets(10, 10, 10, 10));
+        this.setHgap(5);
+        this.setVgap(5);
+        this.setPadding(new Insets(10, 10, 10, 10));
     }
 
     public ReflectorGrid(ReflectorGrid refGrid) {
-        grid.setHgap(refGrid.getHgap());
-        grid.setVgap(refGrid.getVgap());
-        grid.setPadding(refGrid.getPadding());
+        this.setHgap(refGrid.getHgap());
+        this.setVgap(refGrid.getVgap());
+        this.setPadding(refGrid.getPadding());
         this.NODE_WIDTH_LIMIT = refGrid.getNodeWidth();
         this.displayOrder = refGrid.getDisplayOrder();
         this.namingConvention = refGrid.getNamingConvention();
     }
 
-    public GridPane transfromIntoGrid(Object object) {
+    public void transfromIntoGrid(Object object) {
         Objects.requireNonNull(object, "The received Object is null!");
         setGridObject(object);
-        return generateGrid();
+        generateGrid();
+        //return this;
     }
 
 
@@ -134,7 +133,7 @@ public class ReflectorGrid {
      *
      * @return The finished Grid for the given Object.
      */
-    private GridPane generateGrid() {
+    private void generateGrid() {
         clearGrid();
 
         InsertionPosition insertionPosition = new InsertionPosition(0, 0);
@@ -143,13 +142,12 @@ public class ReflectorGrid {
 
         while(clazz != null) {
             for (Field field : clazz.getDeclaredFields()) {
-                if(shouldTransferToGrid(field)){
+                if (shouldTransferToGrid(field)) {
                     insertionPosition = handleField(insertionPosition, field, gridObject);
                 }
             }
             clazz = clazz.getSuperclass();
         }
-        return grid;
     }
 
     /**
@@ -163,16 +161,17 @@ public class ReflectorGrid {
      * @return
      */
     private InsertionPosition handleSubClassField(InsertionPosition insertionPosition, Field field, Object subObject) {
-        insertionPosition = addSeparator(insertionPosition, grid);
-        insertionPosition = displayOrder.addNode(insertionPosition, new Label(namingConvention.toString(field) + ":"), grid);
+        insertionPosition = addSeparator(insertionPosition, this);
+        insertionPosition = displayOrder.addNode(insertionPosition, new Label(namingConvention.toString(field) + ":"), this);
         ReflectorGrid tempRefGrid = new ReflectorGrid(this);
         Object object = ReflectionHelper.getFieldValue(field, subObject);
-        insertionPosition =  addGridElements(insertionPosition, tempRefGrid.transfromIntoGrid(object));
-        return addSeparator(insertionPosition, grid);
+        tempRefGrid.transfromIntoGrid(object);
+        insertionPosition =  addGridElements(insertionPosition, tempRefGrid);
+        return addSeparator(insertionPosition, this);
     }
 
     private InsertionPosition addSeparator(InsertionPosition insertionPosition, GridPane pane){
-        return displayOrder.addSeparator(insertionPosition, grid);
+        return displayOrder.addSeparator(insertionPosition, this);
     }
 
     /**
@@ -189,7 +188,7 @@ public class ReflectorGrid {
             if (label == null) {
                 label = (Label) node;
             } else {
-                position = displayOrder.addNode(position, label, node, grid);
+                position = displayOrder.addNode(position, label, node, this);
                 label = null;
             }
         }
@@ -208,21 +207,20 @@ public class ReflectorGrid {
         if (TypeHelper.isNumericType(field.getType()) || TypeHelper.isJavaLang(field.getType()) || TypeHelper.isEnum(field.getType())) {
             Pair<Label, Node> nodes = getNodePairForField(field, object);
             return insertionPosition = displayOrder
-                    .addNode(insertionPosition, nodes.getKey(), nodes.getValue(), grid);
+                    .addNode(insertionPosition, nodes.getKey(), nodes.getValue(), this);
         }
         return insertionPosition = handleSubClassField(insertionPosition, field, object);
     }
 
     /**
-     * Creates a Pair of a Label aswell as an InputField for normal decalred Fields.
+     * Creates a Pair of a Label as well as an InputField for normal declared Fields.
      * @param field the field itself
      * @param handle the object it belongs to
-     * @return a Pair<> consisting of a Label with the Fieldname aswell as an InputField
+     * @return a Pair<> consisting of a Label with the Fieldname as well as an InputField
      */
     private Pair<Label, Node> getNodePairForField(Field field, Object handle) {
         Label label = new Label(namingConvention.toString(field));
         Control node;
-        System.out.println("doing " + field.getName());
         TransferGrid annotation = field.getAnnotation(TransferGrid.class);
 
         if (annotation.options().length > 0) {
@@ -287,7 +285,7 @@ public class ReflectorGrid {
     }
 
     private void clearGrid() {
-        grid.getChildren().clear();
+        this.getChildren().clear();
 
     }
 
@@ -367,16 +365,25 @@ public class ReflectorGrid {
         return namingConvention;
     }
 
-    private double getHgap() {
-        return grid.getHgap();
-    }
-
-    private double getVgap() {
-        return grid.getVgap();
-    }
-
-    private Insets getPadding() {
-        return grid.getPadding();
+    /**
+     * Use this function to add an object, for example from the GUI, to be called every time a value
+     * is updated trough reflection.
+     *
+     * Your function will be called with the following parameters:
+     * <b>field, object</b>
+     *
+     * <b>field</b>
+     * Field will give you the field that was updated.
+     *
+     * <b>object</b>
+     * This will show you the object that was updated.
+     *
+     *
+     * @param object an object that implemented  {@link ChangeListener}
+     *
+     */
+    public void addChangeListener(ChangeListener object){
+        ReflectionHelper.addInterfaceToUpdate(object);
     }
 
 }

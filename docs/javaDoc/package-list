@@ -1,3 +1,6 @@
 ch.rs.reflectorgrid
 ch.rs.reflectorgrid.util
+ch.rs.reflectorgrid.util.annotations
+ch.rs.reflectorgrid.util.interfaces
+ch.rs.reflectorgrid.util.statics
 ch.rs.reflectorgrid.util.typeconversion

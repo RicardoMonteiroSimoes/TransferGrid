@@ -24,7 +24,7 @@
  *
  * */
 
-package ch.rs.reflectorgrid.util;
+package ch.rs.reflectorgrid.util.statics;
 
 import java.util.Set;
 import java.util.stream.Collectors;
