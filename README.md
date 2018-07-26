@@ -11,7 +11,7 @@ This library uses reflection to create a JavaFX GridPane with all annoted variab
 
 ## Why
 
-After quite some work on my [Graphical Programming Interface](https://github.com/FancyJavaStuff/GPI) and using quite a bit of [GSON](https://github.com/google/gson), I decided to create a way of generating a GridPane for objects. This lead me to this library, which was primarly developed on the GPI repo and has now been separated into a separate one, for everyone to use.
+After quite some work on my [Graphical Programming Interface](https://github.com/ByRicardoSimoes/GPI) and using quite a bit of [GSON](https://github.com/google/gson), I decided to create a way of generating a GridPane for objects. This lead me to this library, which was primarly developed on the GPI repo and has now been separated into a separate one, for everyone to use.
 
 This was heavily inspired by [GSON](https://github.com/google/gson) and it was used as reference for quite some stuff, so thank you [@Google](https://github.com/google)!
 
@@ -19,7 +19,7 @@ Many thanks also go out to [I-Al-Istannen](https://github.com/I-Al-Istannen) who
 
 The whole library was improved and gives the user now more customizability, whilst also increasing its functional scope. Objects in Objects? No problem, we can include them! Enums? No problem, TransferGrid generates a comboBox which gives the user all enum options!
 
-Check out the [wiki](https://github.com/FancyJavaStuff/TransferGrid/wiki) or the [Example](https://github.com/FancyJavaStuff/TransferGrid/tree/master/src/main/java/Example) to find out more.
+Check out the [wiki](https://github.com/ByRicardoSimoes/TransferGrid/wiki) or the [Example](https://github.com/ByRicardoSimoes/TransferGrid/tree/master/src/main/java/Example) to find out more.
 ## Goals
 
 Currently there are no set goals. Ofcourse, bug fixes are part of it, but I will continue work on the [GPI](https://github.com/FancyJavaStuff/GPI) before thinking about extending TransferGrid. If you have any suggestion/idea, feel free to share it!
@@ -31,17 +31,17 @@ Currently there are no set goals. Ofcourse, bug fixes are part of it, but I will
 **Version 1.7.0 has been released!**
 This version now has 2 Interfaces that can be used for notifications of whenever a reflective action happens.
 
-This feature also added a GitHub Page to this repository that is contains the whole javaDoc of this library. The github Page can be found [here](https://fancyjavastuff.github.io/TransferGrid/javaDoc/index.html)
+This feature also added a GitHub Page to this repository that is contains the whole javaDoc of this library. The github Page can be found [here](https://byricardosimoes.github.io/TransferGrid/javaDoc/index.html)
 
-This repo is also avaliable as a Maven dependency and can be found over at [jitpack.io](https://jitpack.io/#FancyJavaStuff/TransferGrid/v1.7.0).
+This repo is also avaliable as a Maven dependency and can be found over at [jitpack.io](https://jitpack.io/#ByRicardoSimoes/TransferGrid/v1.7.0).
 
 ## HowTo
 
-A how to can be found in the [wiki](https://github.com/FancyJavaStuff/TransferGrid/wiki)
+A how to can be found in the [wiki](https://github.com/ByRicardoSimoes/TransferGrid/wiki)
 
 ## Usage
 
-This repo contains a folder [Example](https://github.com/FancyJavaStuff/TransferGrid/tree/master/src/main/java/Example)
+This repo contains a folder [Example](https://github.com/ByRicardoSimoes/TransferGrid/tree/master/src/main/java/Example)
 
 The main class contains the following setup for the usage of the TransferGrid:
 ```
